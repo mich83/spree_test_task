@@ -1,0 +1,28 @@
+<% content_for :page_title do %>
+    <%= link_to @uploader_class.model_class.model_name.human(count: 2), polymorphic_url([:admin, @uploader_class.model_class]) %> /
+    <%= Spree::FileUpload.model_name.human(count: 2) %>
+<% end %>
+
+<table class="table">
+  <thead>
+    <th><%= Spree::FileUpload.human_attribute_name(:status)%></th>
+    <th><%= Spree::FileUpload.human_attribute_name(:created_at)%></th>
+    <th><%= Spree::FileUpload.human_attribute_name(:error_messages_text) %></th>
+  </thead>
+  <tbody>
+    <% @file_uploads.each do |file_upload| %>
+      <tr>
+        <td>
+          <%= Spree::FileUpload.human_attribute_name(file_upload.status) %>
+        </td>
+        <td>
+          <%= file_upload.created_at.strftime('%Y-%m-%d %H:%M') %>
+        </td>
+        <td>
+          <%= file_upload.error_messages_text %>
+        </td>
+      </tr>
+
+    <% end %>
+  </tbody>
+</table>

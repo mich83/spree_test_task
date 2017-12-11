@@ -1,0 +1,16 @@
+<% content_for :page_title do %>
+    <%= link_to @uploader_class.model_class.model_name.human(count: 2), polymorphic_url([:admin, @uploader_class.model_class]) %> /
+    <%= Spree::FileUpload.model_name.human %>
+<% end %>
+
+<%= form_for :file_upload, html: { multipart: true }, url: admin_file_upload_index_url do |f| %>
+    <%= f.hidden_field :uploader, value: @uploader_class.to_s.underscore %>
+    <div data-hook="file" class="form-group">
+      <%= f.label :file, Spree.t(:filename) %>
+      <%= f.file_field :file, accept: @uploader_class.mime_types.keys %>
+    </div>
+    <%= button Spree.t(:upload), 'upload' %>
+<% end %>
+<br>
+<hr/>
+<%= link_to Spree::FileUpload.model_name.human(count: 2), admin_file_upload_index_url(loader: @loader_class_name) %>

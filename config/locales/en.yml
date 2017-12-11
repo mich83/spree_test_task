@@ -30,4 +30,16 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      spree/file_upload:
+        pending: Pending
+        failed: Failed
+        successful: Successful
+        status: Status
+        created_at: Created at
+        error_messages_text: Errors
+    models:
+        spree/file_upload:
+          one: Load from file
+          other: File uploads
